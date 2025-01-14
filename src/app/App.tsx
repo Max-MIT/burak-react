@@ -1,43 +1,41 @@
 import React from 'react';
 import '../css/app.css';
 import { Box, Button, Container, Stack, Typography } from '@mui/material';
-import { Link, Route, Switch } from 'react-router-dom';
-import { About } from './screens/About';
-import { Users } from './screens/Users';
+import { Link, Route, Routes  } from 'react-router-dom';
+import { HomePage } from './screens/HomePage';
+import { OrdersPage } from './screens/ordersPage';
+import { UsersPage } from './screens/userPage';
+import { ProductsPage } from './screens/productsPage';
 
 function App() {
   return (
     <div>
         <nav>
           <ul>
-            <li>
-              <Link to="/">Home</Link>
+          <li>
+              <Link to="/HomePage">HomePage</Link>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <Link to="/products">ProductsPage</Link>
             </li>
             <li>
-              <Link to="/users">Users</Link>
+              <Link to="/orders">OrdersPage</Link>
+            </li>
+            <li>
+              <Link to="/member-page">UserPage</Link>
             </li>
           </ul>
         </nav>
 
-        <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/users">
-            <Users />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </div>
+        <Routes>
+        <Route path="/products" element={<ProductsPage />} />
+        <Route path="/orders" element={<OrdersPage />} />
+        <Route path="/member-page" element={<UsersPage />} />
+        <Route path="/" element={<HomePage />} />
+      </Routes>
+    </div>
  );
 }
-function Home() {
-  return <h2>Home</h2>;
-}
+
 
 export default App;

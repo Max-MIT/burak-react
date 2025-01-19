@@ -9,7 +9,6 @@ import CardOverflow from '@mui/joy/CardOverflow';
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 
-
 const list = [
     { productName: "Lavash", imagePath: "/img/lavash.webp" },
     { productName: "Cutlet", imagePath: "/img/cutlet.webp" },
@@ -24,7 +23,8 @@ export default function PopularDishes() {
         <Stack className="popular-section">
           <Box className="category-title">Popular Dishes</Box>
           <Stack className="cards-frame">
-            {list.map((ele, index) => {
+            {list.length !== 0 ? (
+            list.map((ele, index) => {
             return (
                 <CssVarsProvider key={index}>
                     <Card className={"card"}>
@@ -55,7 +55,7 @@ export default function PopularDishes() {
                         >
                             20
                             <VisibilityIcon
-                            sx={{ fontSize: 25, marginLeft: "5px"}}
+                            sx={{ fontSize: 25, marginLeft: "5px" }}
                             />
                         </Typography>
                         </Stack>
@@ -80,7 +80,10 @@ export default function PopularDishes() {
                                 </Card>
                                 </CssVarsProvider>
             );
-        })}
+            })
+        ) : (
+            <Box className="no-data"> Popular products are not available!</Box>
+        )}
         </Stack>
         </Stack>
         </Container>

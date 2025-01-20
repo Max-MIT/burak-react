@@ -1,6 +1,5 @@
 import React from "react";
-import { Box, Button, Container, Stack, Typography } from "@mui/material";
-import { Link, Route, Routes, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import HomePage from "./screens/homePage";
 import ProductsPage from "./screens/productsPage/index";
 import OrdersPage from "./screens/ordersPage";
@@ -22,21 +21,11 @@ function App() {
       {location.pathname === "/" ? <HomeNavbar /> : <OtherNavbar />}
 
       <Routes>
-        <Route path="/help">
-          <HelpPage />
-        </Route>
-        <Route path="/products">
-          <ProductsPage />
-        </Route>
-        <Route path="/orders">
-          <OrdersPage />
-        </Route>
-        <Route path="/member-page">
-          <UserPage />
-        </Route>
-        <Route path="/">
-          <HomePage />
-        </Route>
+        <Route path="/help" element={<HelpPage />} />
+        <Route path="/products" element={<ProductsPage />} />
+        <Route path="/orders" element={<OrdersPage />} />
+        <Route path="/member-page" element={<UserPage />} />
+        <Route path="/" element={<HomePage />} />
       </Routes>
 
       <Footer />

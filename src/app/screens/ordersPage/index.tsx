@@ -60,22 +60,22 @@ export default function OrdersPage() {
                 />
               </div>
             </div>
-            <Box className="order-user-name">Justin</Box>
+            <Box className="order-user-name">Timurbek</Box>
             <Box className="order-user-prof">USER</Box>
             <Box className="liner" />
             <Stack className="order-user-address">
               <LocationOnIcon />
-              <Box className="spec-address-text">South Korea, Busan</Box>
+              <Box className="spec-address-text">South Korea, Kimhe</Box>
             </Stack>
           </Stack>
 
           <Stack className="card-info order-info-box">
-            <Box className="card-input">Card Number: 5243 4090 2002 7495</Box>
+            <Box className="card-input">Card Number: 0610 1561 1920 0352</Box>
             <Stack className="card-half">
-              <Box className="card-half-input">07 / 24</Box>
-              <Box className="card-half-input">CVV: 010</Box>
+              <Box className="card-half-input">10 / 27</Box>
+              <Box className="card-half-input">CVV: 593</Box>
             </Stack>
-            <Box className="card-input">Justin Robertson</Box>
+            <Box className="card-input">Timurbek Saburov</Box>
             <Stack className="cards-box">
               <img src="/icons/western-card.svg"></img>
               <img src="/icons/master-card.svg"></img>

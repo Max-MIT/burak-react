@@ -19,7 +19,7 @@ export default function FinishedOrders() {
                     <Box key={index2} className="orders-name-price">
                       <Stack className="order-dish-class">
                         <img src="img/lavash.webp" className="order-dish-img" />
-                        <p className="title-dish">Lavash</p>
+                        <p className="title-dish">Kebab</p>
                       </Stack>
                       <Stack className="price-box">
                         <p>$10</p>

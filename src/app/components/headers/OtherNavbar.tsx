@@ -1,63 +1,71 @@
 import { Box, Button, Container, Stack } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import Basket from "./Basket";
+import { CartItem } from "../../../lib/types/search";
+import React from "react";
 
-export default function OtherNavbar() {
+interface OtherNavbarProps {
+  cartItems: CartItem[];
+}
+
+export default function OtherNavbar(props: OtherNavbarProps) {
+  const { cartItems } = props;
     const authMember = null;
-    return <div className="home-navbar">
-    <Container  className="navbar-container">
+  return (
+    <div className="other-navbar">
+      <Container className="navbar-container">
         <Stack className="menu">
-            <Box>
-                <NavLink to ="/">
-                <img className="brand-logo"style={{ width: "125px", height: "30px" }} src="/icons/burak.svg"/>
-                </NavLink>
+          <Box>
+            <NavLink to="/">
+              <img className="brand-logo" src="/icons/burak.svg" />
+            </NavLink>
+          </Box>
+          <Stack className="links">
+            <Box className={"hover-line"}>
+              <NavLink to="/">Home</NavLink>
             </Box>
-            <Stack className="links">
-                   <Box className={"hover-line"}>
-                <NavLink to ="/">Home</NavLink>
-                </Box>
-                <Box className={"hover-line"}>
-                <NavLink to ="/products"className={({ isActive }) => (isActive ? "underline" : undefined)}>
+            <Box className={"hover-line"}>
+              <NavLink to="/products" activeClassName={"underline"}>
                 Products
+              </NavLink>
+            </Box>
+            {authMember ? (
+              <Box className={"hover-line"}>
+                <NavLink to="/orders" activeClassName={"underline"}>
+                  Orders
                 </NavLink>
-                </Box>
-                {authMember ? ( 
-                    <Box className={"hover-line"}>
-                <NavLink to ="/orders" className={({ isActive }) => (isActive ? "underline" : undefined)}>
-                Orders
-                </NavLink>
-                </Box>
+              </Box>
             ) : null}
-                {authMember ? ( 
-                    <Box className={"hover-line"}>
-                <NavLink to ="/member-page" className={({ isActive }) => (isActive ? "underline" : undefined)}>
-                My Page
+            {authMember ? (
+              <Box className={"hover-line"}>
+                <NavLink to="/member-page" activeClassName={"underline"}>
+                  My Page
                 </NavLink>
-                </Box>
+              </Box>
             ) : null}
-                <Box className={"hover-line"}>
-                <NavLink to ="/help" className={({ isActive }) => (isActive ? "underline" : undefined)}>
+            <Box className={"hover-line"}>
+              <NavLink to="/help" activeClassName={"underline"}>
                 Help
-                </NavLink>
-                </Box>
-                <Basket />
+              </NavLink>
+            </Box>
+            <Basket cartItems={cartItems}/>
 
-                {!authMember ? (
-                    <Box>
-                        <Button variant="contained" className="login-button">
-                            Login
-                            </Button>
-                        </Box>
-                    ) : (
-                       <img 
-                      className="user-avatar"
-                       src={"/icons/default-user.svg"}
-                       aria-haspopup={"true"}
-                       />
-                    )}
-            </Stack>
+            {!authMember ? (
+              <Box>
+                <Button variant="contained" className="login-button">
+                  Login
+                </Button>
+              </Box>
+            ) : (
+              <img
+                className="user-avatar"
+                src={"/icons/default-user.svg"}
+                aria-haspopup={"true"}
+              />
+            )}
+          </Stack>
         </Stack>
-    </Container>
-</div>
-;
+      </Container>
+    </div>
+  );
 }

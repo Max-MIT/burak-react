@@ -2,8 +2,14 @@ import { Box, Button, Container, Stack } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import Basket from "./Basket";
 import React, { useEffect, useState } from "react";
+import { CartItem } from "../../../lib/types/search";
 
-export default function HomeNavbar() {
+interface HomeNavbarProps {
+  cartItems: CartItem[];
+}
+
+export default function HomeNavbar(props: HomeNavbarProps) {
+  const { cartItems } = props;
   const authMember = null;
   const [count, setCount] = useState<number>(0);
   const [value, setvalue] = useState<boolean>(true);
@@ -29,69 +35,40 @@ export default function HomeNavbar() {
         <Stack className="menu">
           <Box>
             <NavLink to="/">
-              <img
-                className="brand-logo"
-                style={{ width: "125px", height: "30px" }}
-                src="/icons/burak.svg"
-              />
+              <img className="brand-logo" src="/icons/burak.svg"/>
             </NavLink>
           </Box>
           <Stack className="links">
             <Box className={"hover-line"}>
-              <NavLink
-                to="/"
-                className={({ isActive }) =>
-                  isActive ? "underline" : undefined
-                }
-              >
+              <NavLink to="/"  activeClassName={"underline"}>
                 Home
               </NavLink>
             </Box>
             <Box className={"hover-line"}>
-              <NavLink
-                to="/products"
-                className={({ isActive }) =>
-                  isActive ? "underline" : undefined
-                }
-              >
+              <NavLink to="/products"  activeClassName={"underline"}>
                 Products
               </NavLink>
             </Box>
             {authMember ? (
               <Box className={"hover-line"}>
-                <NavLink
-                  to="/orders"
-                  className={({ isActive }) =>
-                    isActive ? "underline" : undefined
-                  }
-                >
+                <NavLink to="/orders" activeClassName={"underline"}>
                   Orders
                 </NavLink>
               </Box>
             ) : null}
             {authMember ? (
               <Box className={"hover-line"}>
-                <NavLink
-                  to="/member-page"
-                  className={({ isActive }) =>
-                    isActive ? "underline" : undefined
-                  }
-                >
+                <NavLink to="/member-page" activeClassName={"underline"}>
                   My Page
                 </NavLink>
               </Box>
             ) : null}
             <Box className={"hover-line"}>
-              <NavLink
-                to="/help"
-                className={({ isActive }) =>
-                  isActive ? "underline" : undefined
-                }
-              >
+              <NavLink to="/help" activeClassName={"underline"}>
                 Help
               </NavLink>
             </Box>
-            <Basket />
+            <Basket cartItems={cartItems} />
 
             {!authMember ? (
               <Box>

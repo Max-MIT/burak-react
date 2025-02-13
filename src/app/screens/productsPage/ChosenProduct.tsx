@@ -31,8 +31,8 @@ const actionDispatch = (dispatch: Dispatch) => ({
 const chosenProductRetriever = createSelector(
   retrieveChosenProduct,
   (chosenProduct) => ({
-     chosenProduct, 
-    })
+    chosenProduct,
+  })
 );
 const restaurantRetriever = createSelector(
   retrieveRestaurant,
@@ -59,8 +59,8 @@ export default function ChosenProduct(props: ChosenProductProps) {
       .then((data) => setChosenProduct(data))
       .catch((err) => console.log(err));
 
-      const member = new MemberService();
-      member
+    const member = new MemberService();
+    member
       .getRestaurant()
       .then((data) => setRestaurant(data))
       .catch((err) => console.log(err));
@@ -83,7 +83,7 @@ export default function ChosenProduct(props: ChosenProductProps) {
               const imagePath = `${serverApi}/${ele}`;
               return (
                 <SwiperSlide key={index}>
-                  <img className="slider-image" src={imagePath}/>
+                  <img className="slider-image" src={imagePath} />
                 </SwiperSlide>
               );
             })}
@@ -116,7 +116,21 @@ export default function ChosenProduct(props: ChosenProductProps) {
               <span>${chosenProduct?.productPrice}</span>
             </div>
             <div className={"button-box"}>
-              <Button variant="contained">Add To Basket</Button>
+              <Button
+                variant="contained"
+                onClick={(e) => {
+                  onAdd({
+                    _id: chosenProduct._id,
+                    quantity: 1,
+                    name: chosenProduct.productName,
+                    price: chosenProduct.productPrice,
+                    image: chosenProduct.productImages[0],
+                  });
+                  e.stopPropagation();
+                }}
+              >
+                Add To Basket
+              </Button>
             </div>
           </Box>
         </Stack>

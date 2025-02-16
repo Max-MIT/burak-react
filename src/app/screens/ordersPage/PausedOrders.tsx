@@ -22,12 +22,10 @@ export default function PausedOrders() {
   return (
     <TabPanel value="1">
       <Stack>
-        {/* number of orders */}
         {pausedOrders?.map((order: Order) => {
           return (
             <Box key={order._id} className="order-main-box">
               <Box className="order-box-scroll">
-                {/* number of items in each order */}
                 {order?.orderItem?.map((item: OrderItem) => {
                   const product: Product = order.productData.filter(
                     (ele: Product) => item.productId === ele._id

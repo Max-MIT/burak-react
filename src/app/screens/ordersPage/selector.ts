@@ -13,7 +13,7 @@ export const retrieveProcessOrders = createSelector(
   (OrdersPage) => OrdersPage.processOrders
 );
 
-export const setFinishedOrders = createSelector(
+export const retrieveFinishedOrders = createSelector(
   selectOrderPage,
   (OrdersPage) => OrdersPage.finishedOrders
 );

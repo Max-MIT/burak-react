@@ -16,36 +16,32 @@ const finishedOrdersRetriever = createSelector(
 
 export default function FinishedOrders() {
   const { finishedOrders } = useSelector(finishedOrdersRetriever);
-  const orders = [1, 2];
 
   return (
     <TabPanel value="3">
       <Stack>
         {finishedOrders?.map((order: Order) => {
           return (
-            <Box key={order._id} className="order-main-box">
-              <Box className="order-box-scroll">
-                {order?.orderItem?.map((item: OrderItem) => {
+            <Box key={order._id} className={"order-main-box"}>
+              <Box className={"order-box-scroll"}>
+                {order?.orderItems?.map((item: OrderItem) => {
                   const product: Product = order.productData.filter(
                     (ele: Product) => item.productId === ele._id
                   )[0];
                   const imagePath = `${serverApi}/${product.productImages[0]}`;
                   return (
                     <Box key={item._id} className="orders-name-price">
-                      <Stack className="order-dish-class">
-                        <img src={imagePath} className="order-dish-img" />
-                        <p className="title-dish">{product.productName}</p>
-                      </Stack>
-                      <Stack className="price-box">
+                      <img src={imagePath} className="order-dish-img" />
+                      <p className="title-dish">{product.productName}</p>
+                      <Box className="price-box">
                         <p>${item.itemPrice}</p>
                         <img src="/icons/close.svg" />
                         <p>{item.itemQuantity}</p>
                         <img src="/icons/pause.svg" />
                         <p style={{ marginLeft: "15px" }}>
-                          {" "}
                           ${item.itemQuantity * item.itemPrice}
                         </p>
-                      </Stack>
+                      </Box>
                     </Box>
                   );
                 })}

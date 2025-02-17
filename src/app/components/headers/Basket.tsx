@@ -12,7 +12,7 @@ import { Messages, serverApi } from "../../../lib/config";
 import { sweetErrorHandling } from "../../../lib/types/sweetAlert";
 import { useGlobals } from "../../hooks/useGlobals";
 import { Message } from "@mui/icons-material";
-import OrderService from "../../services/OrderService"
+import OrderService from "../../services/OrderService";
 
 interface BasketProps {
   cartItems: CartItem[];
@@ -24,7 +24,7 @@ interface BasketProps {
 
 export default function Basket(props: BasketProps) {
   const { cartItems, onAdd, onRemove, onDelete, onDeleteAll } = props;
-  const { authMember } = useGlobals();
+  const { authMember, setOrderBuilder } = useGlobals();
   const history = useHistory();
   const itemPrice: number = cartItems.reduce(
     (a: number, c: CartItem) => a + c.quantity * c.price,
@@ -55,7 +55,7 @@ export default function Basket(props: BasketProps) {
 
       onDeleteAll();
 
-      // REFRESH VIA CONTEXT
+      setOrderBuilder(new Date());
       history.push("/orders");
     } catch (err) {
       console.log(err);
